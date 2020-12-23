@@ -257,9 +257,6 @@ impl TransportFrameMethod {
 fn main() {
 
     let mut mappings: Mappings = HashMap::new();
-    // mappings.insert(Ipv4Addr::new(91, 173, 84, 75), [0x00, 0x01, 0x02, 0x03, 0x04, 0x05]);
-    // mappings.insert(Ipv4Addr::new(10, 130, 1, 104), [0x10, 0x11, 0x12, 0x13, 0x14, 0x15] );
-    // mappings.insert(Ipv4Addr::new(91, 173, 84, 75));
 
     let (ether_frame_methods, ip_frame_methods, transport_frame_methods) = init_knowledge();
 
