@@ -600,6 +600,10 @@ fn parse_transport_layer(ip_protocol: &u8, tp_frame_methods: &Vec<TransportFrame
         .filter(|x| x.value == *ip_protocol)
         .map(|x| (x.parser)(packet))
         .collect();
+	
+    if parsed_tp.len() == 0 {
+        println!("No parser found");
+    }
 }
 
 fn parse_icmp_payload(buffer: &[u8]) {
