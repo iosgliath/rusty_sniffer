@@ -510,7 +510,7 @@ fn parse_ipv4_payload(packet: &[u8])-> (Header<>, u8, u8) {
             println!("  Ipv4 ");
             println!("      IP          : {:} -> {:}", hdr.src_ip, hdr.dst_ip);
             println!("      PROTOCOL    : {:}", hdr.protocol);
-            println!("      FLAGS       : R {:} | DF {:} | MF {:}", hdr.flag_reserved, hdr.flag_dontfrag, hdr.flag_morefrag);
+            println!("      FLAGS       : [R {:}]  [DF {:}]  [MF {:}]", hdr.flag_reserved, hdr.flag_dontfrag, hdr.flag_morefrag);
             protocol = hdr.protocol;
         },
         _ => println!("Something else"),
