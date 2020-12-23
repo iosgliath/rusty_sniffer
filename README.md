@@ -1,7 +1,7 @@
 # rusty_sniffer
 
-Wished to try Rust out.
-And to hack a packet sniffer out.
+Wished to try Rust.
+And to make a packet sniffer.
 
 Rusty sniffer is just that :
 
