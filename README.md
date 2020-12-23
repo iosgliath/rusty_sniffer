@@ -5,7 +5,7 @@ And to make a packet sniffer.
 
 Rusty sniffer is just that :
 
-A naive network packet sniffer and parser, using std and libc.
+A naive network packet listener and parser, using std and libc.
 
 For now:
   - Datalink: 
