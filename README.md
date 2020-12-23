@@ -20,3 +20,5 @@ Just prints out output for now.
 
 Using libc to create socket and listen for packets.
 
+Packet is then parsed by methods saved in init_knowledge() -> methods can be added there
+
