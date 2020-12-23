@@ -14,3 +14,9 @@ For now:
       Ipv4, Ipv6, ARP
   - Transport: 
       TCP, UDP, ICMP
+
+
+Just prints out output for now.
+
+Using libc to create socket and listen for packets.
+
