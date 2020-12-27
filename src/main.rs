@@ -1,3 +1,7 @@
+// http://thomask.sdf.org/blog/2017/09/01/layer-2-raw-sockets-on-rustlinux.html
+// https://www.oreilly.com/library/view/building-internet-firewalls/1565928717/ch04.html
+
+
 extern crate libc;
 extern crate mac_address;
 
@@ -20,6 +24,7 @@ const ETH_P_IPV6: u16   = 0x86DD;
 
 // https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers
 const IP_P_ICMP: u8   = 0x01;
+const IP_P_IGMP: u8    = 0x02;
 const IP_P_TCP: u8    = 0x06;
 const IP_P_UDP: u8    = 0x11;
 
@@ -364,9 +369,9 @@ fn init_knowledge()-> (Vec<EtherFrameMethod>, Vec<IpFrameMethod>, Vec<TransportF
 
     // /////////////////////////////
     // Transport layer database
-    let tmp1 =      [String::from("ICMP"), String::from("TCP"), String::from("UDP")];
-    let tmp2 =      [IP_P_ICMP, IP_P_TCP, IP_P_UDP];
-    let tmp3 =      [parse_icmp_payload, parse_tcp_payload, parse_udp_payload];
+    let tmp1 =      [String::from("ICMP"), String::from("IGMP"),String::from("TCP"), String::from("UDP")];
+    let tmp2 =      [IP_P_ICMP, IP_P_IGMP, IP_P_TCP, IP_P_UDP];
+    let tmp3 =      [parse_icmp_payload, parse_igmp_payload, parse_tcp_payload, parse_udp_payload];
 
     let mut transport_frame_methods = Vec::new();
     for i in 0..tmp1.len() {
@@ -600,10 +605,11 @@ fn parse_transport_layer(ip_protocol: &u8, tp_frame_methods: &Vec<TransportFrame
         .filter(|x| x.value == *ip_protocol)
         .map(|x| (x.parser)(packet))
         .collect();
-	
+
     if parsed_tp.len() == 0 {
         println!("No parser found");
     }
+
 }
 
 fn parse_icmp_payload(buffer: &[u8]) {
@@ -629,6 +635,15 @@ fn parse_icmp_payload(buffer: &[u8]) {
         },
         _ => (),
     }
+}
+
+fn parse_igmp_payload(buffer: &[u8]) {
+
+    if buffer.len() < 8 {
+        // Ignore frame that was too short
+        return;
+    }
+
 }
 
 fn parse_tcp_payload(buffer: &[u8]) {
