@@ -1,7 +1,3 @@
-// http://thomask.sdf.org/blog/2017/09/01/layer-2-raw-sockets-on-rustlinux.html
-// https://www.oreilly.com/library/view/building-internet-firewalls/1565928717/ch04.html
-
-
 extern crate libc;
 extern crate mac_address;
 
